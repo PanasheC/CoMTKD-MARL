@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please cite the paper and this software when using CoMTKD-MARL."
+title: "CoMTKD-MARL"
+version: 0.1.0
+authors:
+  - family-names: Chiurunge
+    given-names: Panashe
+    email: panashe@deepanalytics.ml
+repository-code: "https://github.com/PanasheC/CoMTKD-MARL"
+license: MIT
+date-released: 2026-07-19

@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "comtkd-marl"
+version = "0.1.0"
+description = "Coherent multi-teacher knowledge distillation through multi-agent reinforcement learning"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Panashe Chiurunge", email = "panashe@deepanalytics.ml"}]
+dependencies = [
+  "torch>=2.2",
+  "torchvision>=0.17",
+  "numpy>=1.24",
+  "PyYAML>=6.0",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.5", "mypy>=1.10"]
+
+[tool.setuptools]
+py-modules = [
+  "setting",
+  "train_baseline",
+  "train_loops",
+  "train_student_avg",
+  "train_student_rl",
+  "train_student_comtkd_marl",
+  "utils",
+  "evaluate",
+]
+
+[tool.setuptools.packages.find]
+include = ["dataset*", "distiller_zoo*", "helper*", "models*", "experiments*"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]

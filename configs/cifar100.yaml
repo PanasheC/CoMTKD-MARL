@@ -1,0 +1,40 @@
+dataset:
+  name: cifar100
+  root: ./data
+  download: true
+  batch_size: 128
+  workers: 4
+student:
+  architecture: ShuffleV2
+  epochs: 240
+  learning_rate: 0.05
+  weight_decay: 0.0005
+teachers:
+  names:
+    - RegNetY_400MF
+    - RegNetX_400MF
+    - resnet32x4
+    - wrn_28_4
+distillation:
+  temperature: 4.0
+  common_dim: 256
+  logit_weight: 1.0
+  feature_weight: 5.0
+  relational_weight: 0.1
+  uncertainty_weight: 0.05
+marl:
+  hidden_dim: 128
+  attention_heads: 4
+  synchronization_rounds: 3
+  actor_learning_rate: 0.0003
+  critic_learning_rate: 0.001
+  ppo_clip: 0.2
+  ppo_epochs: 4
+  rollout_size: 1024
+reward:
+  novelty: 0.05
+  coherence: 0.10
+  redundancy: 0.05
+  conflict: 0.05
+  cost: 0.02
+  stability: 0.01
