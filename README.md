@@ -2,7 +2,7 @@
 
 **A Formal Theory of Knowledge Aggregation, Synchronization, and Optimal Teacher Cardinality**
 
-This repository provides a clean-room PyTorch implementation of **CoMTKD-MARL** for CIFAR-100. The project follows the top-level organization and command style of the MTKD-RL reference implementation while adding cooperative teacher agents, a centralized coherence critic, a synchronization oracle, counterfactual teacher credit, and a learned teacher-cardinality policy.
+This repository provides a clean-room PyTorch implementation of **CoMTKD-MARL** for CIFAR-100 with cooperative teacher agents, a centralized coherence critic, a synchronization oracle, counterfactual teacher credit, and a learned teacher-cardinality policy.
 
 The intended repository location is:
 
@@ -29,13 +29,13 @@ Multiple teachers improve student learning when their errors are sufficiently di
 Let the teacher error vector be
 
 $$
- e_m(x)=p_m(x)-p^*(x),
+e_m(x)=p_m(x)-p^*(x),
 $$
 
 and define the teacher error second-moment matrix
 
 $$
- C_{mn}=\mathbb{E}_X\left[\langle e_m(X),e_n(X)\rangle\right].
+C_{mn}=\mathbb{E}_X\left[\langle e_m(X),e_n(X)\rangle\right].
 $$
 
 For a probability barycenter with weights $\mathbf{w}\in\Delta^{M-1}$,
@@ -47,9 +47,15 @@ $$
 When $C\succ0$ and $C^{-1}\mathbf{1}$ is strictly positive, the interior optimum is
 
 $$
-\mathbf{w}^{*}=\frac{C^{-1}\mathbf{1}}{\mathbf{1}^{\top}C^{-1}\mathbf{1}},
+\mathbf{w}^{\star}
+=
+\frac{C^{-1}\mathbf{1}}
+{\mathbf{1}^{\top}C^{-1}\mathbf{1}},
 \qquad
-\mathcal{R}_T(\mathbf{w}^{*})=\frac{1}{\mathbf{1}^{\top}C^{-1}\mathbf{1}}.
+\mathcal{R}_T\left(\mathbf{w}^{\star}\right)
+=
+\frac{1}
+{\mathbf{1}^{\top}C^{-1}\mathbf{1}}
 $$
 
 The coordinated coalition has lower expected risk than every admissible single teacher when
@@ -133,7 +139,11 @@ $$
 a sufficient stopping rule is
 
 $$
-\min\left\{g_{M+1},[B_S-G_M]_+\right\}\leq d_{M+1},
+\min\left\{
+g_{M+1},
+\left[B_S-G_M\right]_+
+\right\}
+\leq d_{M+1}
 $$
 
 where $d_{M+1}=C_{M+1}-C_M$ is the incremental coordination cost. The code provides a learned cardinality policy and an offline theorem-validation utility for fixed-cardinality sweeps.
