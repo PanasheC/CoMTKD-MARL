@@ -29,7 +29,7 @@ Multiple teachers improve student learning when their errors are sufficiently di
 Let the teacher error vector be
 
 $$
-e\_m(x)=p\_m(x)-p^\*(x),
+e\_m(x)=p\_m(x)-p^{\\ast}(x),
 $$
 
 and define the teacher error second-moment matrix
@@ -46,18 +46,10 @@ $$
 
 When $C\\succ0$ and $C^{-1}\\mathbf{1}$ is strictly positive, the interior optimum is
 
-
-\\mathbf{w}^{\\star}
-===
-
-\\frac{C^{-1}\\mathbf{1}}
-{\\mathbf{1}^{\\top}C^{-1}\\mathbf{1}},
+$$
+\\mathbf{w}^{\\ast}=\\frac{C^{-1}\\mathbf{1}}{\\mathbf{1}^{\\top}C^{-1}\\mathbf{1}},
 \\qquad
-\\mathcal{R}\_T\\left(\\mathbf{w}^{\\star}\\right)
-===
-
-\\frac{1}
-{\\mathbf{1}^{\\top}C^{-1}\\mathbf{1}}
+\\mathcal{R}\_T(\\mathbf{w}^{\\ast})=\\frac{1}{\\mathbf{1}^{\\top}C^{-1}\\mathbf{1}}.
 $$
 
 The coordinated coalition has lower expected risk than every admissible single teacher when
@@ -79,13 +71,13 @@ J=\\frac{1}{M}\\mathbf{1}\\mathbf{1}^{\\top},
 \\qquad
 \\Pi=I-J,
 \\qquad
-\\mathrm{CI}^{(r)}=\\frac{1}{M}|\\Pi K^{(r)}|\_F^2.
+\\mathrm{CI}^{(r)}=\\frac{1}{M}\\Vert \\Pi K^{(r)}\\Vert \_F^2.
 $$
 
 For a primitive, doubly stochastic mixing matrix $W$ with
 
 $$
-\\rho=|W-J|\_2<1,
+\\rho=\\Vert W-J\\Vert \_2<1,
 $$
 
 exact synchronization satisfies
@@ -94,7 +86,7 @@ $$
 \\mathrm{CI}^{(r)}\\leq \\rho^{2r}\\mathrm{CI}^{(0)}.
 $$
 
-With bounded perturbation $|\\Pi E^{(r)}|\_F\\leq\\varepsilon\_E$,
+With bounded perturbation $\\Vert \\Pi E^{(r)}\\Vert \_F\\leq\\varepsilon\_E$,
 
 $$
 \\sqrt{\\mathrm{CI}^{(r)}}
@@ -129,24 +121,20 @@ $$
 then usable information is bounded by
 
 $$
-I(Y;Z\_M)\\leq\\min{G\_M,B\_S}.
+I(Y;Z\_M)\\leq\\min\\lbrace G\_M,B\_S\\rbrace .
 $$
 
 For net value
 
 $$
-U\_M=\\min{G\_M,B\_S}-C\_M,
+U\_M=\\min\\lbrace G\_M,B\_S\\rbrace -C\_M,
 $$
 
 a sufficient stopping rule is
 
-
-\\min\\left{
-g\_{M+1},
-\\left\[B\_S-G\_M\\right]*+
-\\right}
-\\leq d*{M+1}
-
+$$
+\\min\\left\\lbrace g\_{M+1},\[B\_S-G\_M]*+\\right\\rbrace \\leq d*{M+1},
+$$
 
 where $d\_{M+1}=C\_{M+1}-C\_M$ is the incremental coordination cost. The code provides a learned cardinality policy and an offline theorem-validation utility for fixed-cardinality sweeps.
 
@@ -186,7 +174,7 @@ R\_t={}\&
 \&-\\eta\_R\\mathrm{Red}\_t
 -\\eta\_X\\mathrm{Conf}*t
 -\\eta\_K\\sum\_m g*{m,t}
--\\eta\_S|\\mathbf{w}*t-\\mathbf{w}*{t-1}|\_2^2.
+-\\eta\_S\\Vert \\mathbf{w}*t-\\mathbf{w}*{t-1}\\Vert \_2^2.
 \\end{aligned}
 $$
 
