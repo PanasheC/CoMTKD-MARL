@@ -24,151 +24,153 @@ Multiple teachers improve student learning when their errors are sufficiently di
 
 ## Formal theorem summary
 
-### 1. Multi-Teacher Advantage Theorem
+### 1\. Multi-Teacher Advantage Theorem
 
 Let the teacher error vector be
 
 $$
-e_m(x)=p_m(x)-p^*(x),
+e\_m(x)=p\_m(x)-p^\*(x),
 $$
 
 and define the teacher error second-moment matrix
 
 $$
-C_{mn}=\mathbb{E}_X\left[\langle e_m(X),e_n(X)\rangle\right].
+C\_{mn}=\\mathbb{E}\_X\\left\[\\langle e\_m(X),e\_n(X)\\rangle\\right].
 $$
 
-For a probability barycenter with weights $\mathbf{w}\in\Delta^{M-1}$,
+For a probability barycenter with weights $\\mathbf{w}\\in\\Delta^{M-1}$,
 
 $$
-\mathcal{R}_T(\mathbf{w})=\mathbf{w}^{\top}C\mathbf{w}.
+\\mathcal{R}\_T(\\mathbf{w})=\\mathbf{w}^{\\top}C\\mathbf{w}.
 $$
 
-When $C\succ0$ and $C^{-1}\mathbf{1}$ is strictly positive, the interior optimum is
+When $C\\succ0$ and $C^{-1}\\mathbf{1}$ is strictly positive, the interior optimum is
 
-$$
-\mathbf{w}^{\star}
-=
-\frac{C^{-1}\mathbf{1}}
-{\mathbf{1}^{\top}C^{-1}\mathbf{1}},
-\qquad
-\mathcal{R}_T\left(\mathbf{w}^{\star}\right)
-=
-\frac{1}
-{\mathbf{1}^{\top}C^{-1}\mathbf{1}}
+
+\\mathbf{w}^{\\star}
+===
+
+\\frac{C^{-1}\\mathbf{1}}
+{\\mathbf{1}^{\\top}C^{-1}\\mathbf{1}},
+\\qquad
+\\mathcal{R}\_T\\left(\\mathbf{w}^{\\star}\\right)
+===
+
+\\frac{1}
+{\\mathbf{1}^{\\top}C^{-1}\\mathbf{1}}
 $$
 
 The coordinated coalition has lower expected risk than every admissible single teacher when
 
 $$
-\frac{1}{\mathbf{1}^{\top}C^{-1}\mathbf{1}}+\epsilon_{\mathrm{tr}}^{(M)}
+\\frac{1}{\\mathbf{1}^{\\top}C^{-1}\\mathbf{1}}+\\epsilon\_{\\mathrm{tr}}^{(M)}
 <
-\min_m C_{mm}+\underline{\epsilon}_{\mathrm{tr}}^{(1)}.
+\\min\_m C\_{mm}+\\underline{\\epsilon}\_{\\mathrm{tr}}^{(1)}.
 $$
 
 The code estimates $C$, solves the simplex-constrained quadratic problem, and reports the empirical risk margin.
 
-### 2. Knowledge Coherence Theorem
+### 2\. Knowledge Coherence Theorem
 
-Let $K^{(r)}\in\mathbb{R}^{M\times d}$ contain teacher knowledge after synchronization round $r$. Define
+Let $K^{(r)}\\in\\mathbb{R}^{M\\times d}$ contain teacher knowledge after synchronization round $r$. Define
 
 $$
-J=\frac{1}{M}\mathbf{1}\mathbf{1}^{\top},
-\qquad
-\Pi=I-J,
-\qquad
-\mathrm{CI}^{(r)}=\frac{1}{M}\|\Pi K^{(r)}\|_F^2.
+J=\\frac{1}{M}\\mathbf{1}\\mathbf{1}^{\\top},
+\\qquad
+\\Pi=I-J,
+\\qquad
+\\mathrm{CI}^{(r)}=\\frac{1}{M}|\\Pi K^{(r)}|\_F^2.
 $$
 
 For a primitive, doubly stochastic mixing matrix $W$ with
 
 $$
-\rho=\|W-J\|_2<1,
+\\rho=|W-J|\_2<1,
 $$
 
 exact synchronization satisfies
 
 $$
-\mathrm{CI}^{(r)}\leq \rho^{2r}\mathrm{CI}^{(0)}.
+\\mathrm{CI}^{(r)}\\leq \\rho^{2r}\\mathrm{CI}^{(0)}.
 $$
 
-With bounded perturbation $\|\Pi E^{(r)}\|_F\leq\varepsilon_E$,
+With bounded perturbation $|\\Pi E^{(r)}|\_F\\leq\\varepsilon\_E$,
 
 $$
-\sqrt{\mathrm{CI}^{(r)}}
-\leq
-\rho^r\sqrt{\mathrm{CI}^{(0)}}
+\\sqrt{\\mathrm{CI}^{(r)}}
+\\leq
+\\rho^r\\sqrt{\\mathrm{CI}^{(0)}}
 +
-\frac{\varepsilon_E}{\sqrt{M}(1-\rho)}.
+\\frac{\\varepsilon\_E}{\\sqrt{M}(1-\\rho)}.
 $$
 
 The synchronization oracle constructs a symmetric Metropolis mixing matrix, performs graph consensus, measures coherence before and after synchronization, and records the spectral contraction factor.
 
-### 3. Teacher Saturation Theorem
+### 3\. Teacher Saturation Theorem
 
-For an ordered teacher set $\mathcal{S}_M$, define gross information
+For an ordered teacher set $\\mathcal{S}\_M$, define gross information
 
 $$
-G_M=I(Y;K_{\mathcal{S}_M}),
+G\_M=I(Y;K\_{\\mathcal{S}\_M}),
 $$
 
 and conditional gain
 
 $$
-g_{M+1}=I\left(Y;K_{j_{M+1}}\mid K_{\mathcal{S}_M}\right).
+g\_{M+1}=I\\left(Y;K\_{j\_{M+1}}\\mid K\_{\\mathcal{S}\_M}\\right).
 $$
 
 If the student information channel is bounded by
 
 $$
-I(Z_M;K_{\mathcal{S}_M})\leq B_S,
+I(Z\_M;K\_{\\mathcal{S}\_M})\\leq B\_S,
 $$
 
 then usable information is bounded by
 
 $$
-I(Y;Z_M)\leq\min\{G_M,B_S\}.
+I(Y;Z\_M)\\leq\\min{G\_M,B\_S}.
 $$
 
 For net value
 
 $$
-U_M=\min\{G_M,B_S\}-C_M,
+U\_M=\\min{G\_M,B\_S}-C\_M,
 $$
 
 a sufficient stopping rule is
 
-$$
-\min\left\{
-g_{M+1},
-\left[B_S-G_M\right]_+
-\right\}
-\leq d_{M+1}
-$$
 
-where $d_{M+1}=C_{M+1}-C_M$ is the incremental coordination cost. The code provides a learned cardinality policy and an offline theorem-validation utility for fixed-cardinality sweeps.
+\\min\\left{
+g\_{M+1},
+\\left\[B\_S-G\_M\\right]*+
+\\right}
+\\leq d*{M+1}
+
+
+where $d\_{M+1}=C\_{M+1}-C\_M$ is the incremental coordination cost. The code provides a learned cardinality policy and an offline theorem-validation utility for fixed-cardinality sweeps.
 
 ## Architecture
 
 Each teacher has a separate actor. The actor observes teacher quality, teacher-student compatibility, novelty, redundancy, conflict, and cost. It produces:
 
 $$
-a_{m,t}=(g_{m,t},\alpha_{m,t},\tau_{m,t},\boldsymbol{\beta}_{m,t}),
+a\_{m,t}=(g\_{m,t},\\alpha\_{m,t},\\tau\_{m,t},\\boldsymbol{\\beta}\_{m,t}),
 $$
 
 where:
 
-- $g_{m,t}$ is a soft participation gate.
-- $\alpha_{m,t}$ is an importance score.
-- $\tau_{m,t}$ is a sample-specific distillation temperature.
-- $\boldsymbol{\beta}_{m,t}$ allocates teaching strength across logits, features, relations, and uncertainty.
+* $g\_{m,t}$ is a soft participation gate.
+* $\\alpha\_{m,t}$ is an importance score.
+* $\\tau\_{m,t}$ is a sample-specific distillation temperature.
+* $\\boldsymbol{\\beta}\_{m,t}$ allocates teaching strength across logits, features, relations, and uncertainty.
 
 The normalized teacher weights are
 
 $$
-w_{m,t}=
-\frac{g_{m,t}\exp(\alpha_{m,t})}
-{\sum_j g_{j,t}\exp(\alpha_{j,t})+\varepsilon}.
+w\_{m,t}=
+\\frac{g\_{m,t}\\exp(\\alpha\_{m,t})}
+{\\sum\_j g\_{j,t}\\exp(\\alpha\_{j,t})+\\varepsilon}.
 $$
 
 A separate cardinality policy chooses the active count from $1$ to $M$. The highest-scoring teachers form the active coalition. A centralized critic observes the joint state and joint action during training. The student is the only model required at inference.
@@ -176,16 +178,16 @@ A separate cardinality policy chooses the active count from $1$ to $M$. The high
 The team reward implements the paper objective:
 
 $$
-\begin{aligned}
-R_t={}&
-\frac{V_t-V_{t+1}}{|V_t|+\varepsilon}
-+\eta_N\mathrm{Novelty}_t
--\eta_C\mathrm{CI}_t \\
-&-\eta_R\mathrm{Red}_t
--\eta_X\mathrm{Conf}_t
--\eta_K\sum_m g_{m,t}
--\eta_S\|\mathbf{w}_t-\mathbf{w}_{t-1}\|_2^2.
-\end{aligned}
+\\begin{aligned}
+R\_t={}\&
+\\frac{V\_t-V\_{t+1}}{|V\_t|+\\varepsilon}
++\\eta\_N\\mathrm{Novelty}\_t
+-\\eta\_C\\mathrm{CI}\_t \\
+\&-\\eta\_R\\mathrm{Red}\_t
+-\\eta\_X\\mathrm{Conf}*t
+-\\eta\_K\\sum\_m g*{m,t}
+-\\eta\_S|\\mathbf{w}*t-\\mathbf{w}*{t-1}|\_2^2.
+\\end{aligned}
 $$
 
 The default implementation uses contextual MAPPO updates. Each CIFAR-100 sample acts as a one-step cooperative decision context, while the evolving student supplies the non-stationary environment across batches.
@@ -195,21 +197,21 @@ The default implementation uses contextual MAPPO updates. Each CIFAR-100 sample 
 ```text
 CoMTKD-MARL/
 ├── dataset/
-│   ├── __init__.py
+│   ├── \_\_init\_\_.py
 │   └── cifar100.py
-├── distiller_zoo/
-│   ├── __init__.py
-│   ├── coherent_losses.py
-│   └── feature_mse_mtkd_rl.py
+├── distiller\_zoo/
+│   ├── \_\_init\_\_.py
+│   ├── coherent\_losses.py
+│   └── feature\_mse\_mtkd\_rl.py
 ├── helper/
-│   ├── __init__.py
+│   ├── \_\_init\_\_.py
 │   ├── checkpoint.py
 │   ├── logger.py
 │   ├── metrics.py
 │   ├── reproducibility.py
-│   └── theorem_metrics.py
+│   └── theorem\_metrics.py
 ├── models/
-│   ├── comtkd_marl/
+│   ├── comtkd\_marl/
 │   │   ├── actor.py
 │   │   ├── cardinality.py
 │   │   ├── controller.py
@@ -217,39 +219,39 @@ CoMTKD-MARL/
 │   │   ├── observations.py
 │   │   ├── ppo.py
 │   │   └── synchronization.py
-│   ├── cifar_resnet.py
+│   ├── cifar\_resnet.py
 │   ├── registry.py
-│   ├── torchvision_wrappers.py
+│   ├── torchvision\_wrappers.py
 │   ├── util.py
-│   └── wide_resnet.py
+│   └── wide\_resnet.py
 ├── experiments/
-│   ├── cardinality_sweep.py
-│   ├── summarize_runs.py
-│   └── validate_theorems.py
+│   ├── cardinality\_sweep.py
+│   ├── summarize\_runs.py
+│   └── validate\_theorems.py
 ├── tests/
 ├── paper/
-│   └── CoMTKD_MARL_Algorithmica_NeurIPS.tex
+│   └── CoMTKD\_MARL\_Algorithmica\_NeurIPS.tex
 ├── setting.py
-├── train_baseline.py
-├── train_loops.py
-├── train_student_avg.py
-├── train_student_rl.py
-├── train_student_comtkd_marl.py
+├── train\_baseline.py
+├── train\_loops.py
+├── train\_student\_avg.py
+├── train\_student\_rl.py
+├── train\_student\_comtkd\_marl.py
 ├── evaluate.py
 ├── requirements.txt
 └── README.md
 ```
 
-The top-level `dataset`, `distiller_zoo`, `helper`, and `models` layout mirrors the reference repository. The CoMTKD-MARL modules are isolated under `models/comtkd_marl`.
+The top-level `dataset`, `distiller\_zoo`, `helper`, and `models` layout mirrors the reference repository. The CoMTKD-MARL modules are isolated under `models/comtkd\_marl`.
 
 ## Installation
 
 Recommended environment:
 
-- Ubuntu 20.04 or newer
-- Python 3.10 or newer
-- PyTorch 2.2 or newer
-- CUDA 11.8 or newer for GPU training
+* Ubuntu 20.04 or newer
+* Python 3.10 or newer
+* PyTorch 2.2 or newer
+* CUDA 11.8 or newer for GPU training
 
 ```bash
 git clone https://github.com/PanasheC/CoMTKD-MARL.git
@@ -279,72 +281,72 @@ make smoke
 ### Step 1. Train the teacher pool
 
 ```bash
-python train_baseline.py \
-  --model RegNetY_400MF \
-  --data-folder ./data \
-  --checkpoint-dir ./checkpoints/teachers \
+python train\_baseline.py \\
+  --model RegNetY\_400MF \\
+  --data-folder ./data \\
+  --checkpoint-dir ./checkpoints/teachers \\
   --amp
 
-python train_baseline.py \
-  --model RegNetX_400MF \
-  --data-folder ./data \
-  --checkpoint-dir ./checkpoints/teachers \
+python train\_baseline.py \\
+  --model RegNetX\_400MF \\
+  --data-folder ./data \\
+  --checkpoint-dir ./checkpoints/teachers \\
   --amp
 
-python train_baseline.py \
-  --model resnet32x4 \
-  --data-folder ./data \
-  --checkpoint-dir ./checkpoints/teachers \
+python train\_baseline.py \\
+  --model resnet32x4 \\
+  --data-folder ./data \\
+  --checkpoint-dir ./checkpoints/teachers \\
   --amp
 
-python train_baseline.py \
-  --model wrn_28_4 \
-  --data-folder ./data \
-  --checkpoint-dir ./checkpoints/teachers \
+python train\_baseline.py \\
+  --model wrn\_28\_4 \\
+  --data-folder ./data \\
+  --checkpoint-dir ./checkpoints/teachers \\
   --amp
 ```
 
 The convenience script runs all four commands:
 
 ```bash
-bash scripts/train_teachers.sh ./data ./checkpoints/teachers
+bash scripts/train\_teachers.sh ./data ./checkpoints/teachers
 ```
 
 Update `setting.py` with the exact best-checkpoint paths produced by these runs. You can also pass paths explicitly:
 
 ```bash
---teacher-checkpoint RegNetY_400MF=/path/to/RegNetY_400MF_best.pth.tar
+--teacher-checkpoint RegNetY\_400MF=/path/to/RegNetY\_400MF\_best.pth.tar
 ```
 
 ### Step 2. Equal-weight multi-teacher baseline
 
 ```bash
-python train_student_avg.py \
-  --data ./data \
-  --arch ShuffleV2 \
-  --checkpoint-dir ./checkpoints/average \
-  --teacher-name-list RegNetY_400MF RegNetX_400MF resnet32x4 wrn_28_4 \
+python train\_student\_avg.py \\
+  --data ./data \\
+  --arch ShuffleV2 \\
+  --checkpoint-dir ./checkpoints/average \\
+  --teacher-name-list RegNetY\_400MF RegNetX\_400MF resnet32x4 wrn\_28\_4 \\
   --amp
 ```
 
 ### Step 3. CoMTKD-MARL
 
 ```bash
-python train_student_rl.py \
-  --data ./data \
-  --arch ShuffleV2 \
-  --dynamic \
-  --checkpoint-dir ./checkpoints/comtkd_marl \
-  --teacher-name-list RegNetY_400MF RegNetX_400MF resnet32x4 wrn_28_4 \
-  --sync-rounds 3 \
-  --rollout-size 1024 \
+python train\_student\_rl.py \\
+  --data ./data \\
+  --arch ShuffleV2 \\
+  --dynamic \\
+  --checkpoint-dir ./checkpoints/comtkd\_marl \\
+  --teacher-name-list RegNetY\_400MF RegNetX\_400MF resnet32x4 wrn\_28\_4 \\
+  --sync-rounds 3 \\
+  --rollout-size 1024 \\
   --amp
 ```
 
 The descriptive alias is equivalent:
 
 ```bash
-python train_student_comtkd_marl.py [same arguments]
+python train\_student\_comtkd\_marl.py \[same arguments]
 ```
 
 ### Fixed-cardinality ablations
@@ -352,40 +354,40 @@ python train_student_comtkd_marl.py [same arguments]
 To train with exactly three active teachers per sample:
 
 ```bash
-python train_student_rl.py \
-  --data ./data \
-  --arch ShuffleV2 \
-  --forced-cardinality 3 \
-  --teacher-name-list RegNetY_400MF RegNetX_400MF resnet32x4 wrn_28_4 \
+python train\_student\_rl.py \\
+  --data ./data \\
+  --arch ShuffleV2 \\
+  --forced-cardinality 3 \\
+  --teacher-name-list RegNetY\_400MF RegNetX\_400MF resnet32x4 wrn\_28\_4 \\
   --amp
 ```
 
 To run a multi-seed cardinality sweep:
 
 ```bash
-python experiments/cardinality_sweep.py \
-  --max-teachers 4 \
-  --seeds 11 22 33 44 55 \
-  --output-root ./checkpoints/cardinality_sweep \
+python experiments/cardinality\_sweep.py \\
+  --max-teachers 4 \\
+  --seeds 11 22 33 44 55 \\
+  --output-root ./checkpoints/cardinality\_sweep \\
   --extra --data ./data --arch ShuffleV2 --amp
 ```
 
 ## Validate the theoretical quantities
 
 ```bash
-python experiments/validate_theorems.py \
-  --teacher-name-list RegNetY_400MF RegNetX_400MF resnet32x4 wrn_28_4 \
-  --data ./data \
-  --output ./results/theorem_validation \
-  --sync-rounds 8 \
+python experiments/validate\_theorems.py \\
+  --teacher-name-list RegNetY\_400MF RegNetX\_400MF resnet32x4 wrn\_28\_4 \\
+  --data ./data \\
+  --output ./results/theorem\_validation \\
+  --sync-rounds 8 \\
   --per-teacher-cost 0.001
 ```
 
 The command writes:
 
-- `summary.json`, including the teacher error covariance, optimal simplex weights, coalition risk, best single-teacher risk, and estimated optimal cardinality.
-- `coherence_curve.csv`, including coherence and spectral contraction by synchronization round.
-- `cardinality_curve.csv`, including the greedy nested coalition, risk, gross gain, coordination cost, and net value.
+* `summary.json`, including the teacher error covariance, optimal simplex weights, coalition risk, best single-teacher risk, and estimated optimal cardinality.
+* `coherence\_curve.csv`, including coherence and spectral contraction by synchronization round.
+* `cardinality\_curve.csv`, including the greedy nested coalition, risk, gross gain, coordination cost, and net value.
 
 These measurements test the stated sufficient conditions. They do not replace mathematical proof and they do not guarantee that nonconvex student optimization reaches the target-risk optimum.
 
@@ -443,3 +445,4 @@ This repository is a clean-room implementation. It does not copy the original so
 ## License
 
 MIT License. See `LICENSE`.
+
