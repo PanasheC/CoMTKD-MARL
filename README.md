@@ -141,7 +141,7 @@ where $d\_{M+1}=C\_{M+1}-C\_M$ is the incremental coordination cost. The code pr
 ## Architecture
 
 <p align="center">
-  <img src="docs/images/comtkd-marl-architecture.png" alt="CoMTKD-MARL architecture showing the frozen teacher pool, cooperative teacher actors, knowledge synchronization module, centralized coherence critic, cardinality controller, student, and deployment path" width="100%">
+  <img src="docs/images/comtkd-marl-architecture.png" alt="CoMTKD-MARL architecture showing the frozen teacher pool, cooperative teacher actors, knowledge synchronization module, centralized coherence critic, cardinality controller, student, and deployment path" width="100%"> 
 </p>
 
 **Fig. 1. CoMTKD-MARL architecture.** Teacher models remain frozen by default. Each teacher actor chooses participation and teaching parameters. The synchronization module produces a coherent target, the centralized critic assigns cooperative credit, and the cardinality controller removes teachers whose marginal value is non-positive. Only the student is required at inference.
